@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register</title>
+    <link rel="stylesheet" href="{% static 'bands/css/registerStyle.css' %}">
+    <link rel="stylesheet" href="{% static 'bands/css/registerMediaQuery.css' %}">
+    <script src="{% static 'bands/js/registerMain.js' %}" defer></script>
+    <script src="{% static 'bands/js/registerCounter.js' %}" defer></script>
+    <style>
+        .activediv {
+            display: block;
+        }
+
+        .unactivediv {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <div class="main-nav">
+            <a class="backhome" href="/">
+                <img src="{% static 'bands/images/left-arrow-red.png' %}" alt="">
+                <span>Home</span>
+            </a>
+
+            <img src="{% static 'bands/images/navImg.png' %}" alt="">
+        </div>
+
+        <div class="main-heading">
+            <h1>REGISTER</h1>
+        </div>
+
+        <a class="returnhome" href="/">
+            <img src="{% static 'bands/images/left-arrow-red.png' %}" alt="">
+            <span>Homepage</span>
+        </a>
+
+        <div class="main-form">
+            <div class="content">
+                <div class="progress">
+                    <div class="diagram">
+                        <div class="box-1">
+                            <span>1</span>
+                            <img src="{% static 'bands/images/check.png' %}" alt="" class="unactivediv">
+                        </div>
+                        <div class="bar"></div>
+                        <div class="box-2">2</div>
+                    </div>
+                    <div class="text">
+                        <span id="first">Team Details</span>
+                        <div class="divspace"></div>
+                        <span id="second">Team Member Details</span>
+                    </div>
+                </div>
+
+                <div class="divide"></div>
+
+                <form action="{% url 'bands:register' %}" method="post">
+                    {% csrf_token %}
+                    <div class="topblock">
+                        <div class="section-1">
+                            <h3>Team Detail</h3>
+
+                            <div class="fields">
+                                <input type="text" name="team_name" placeholder="Team Name" required>
+                                <input type="text" name="city" placeholder="City" required>
+                                <input type="text" name="performance_link" placeholder="Submission Link" required>
+                            </div>
+                        </div>
+
+                        <div class="section-2">
+                            <h3>Number of Team Members</h3>
+
+                            <div class="secwrapper">
+                                <div class="subsection-1">
+                                    <div class="member-block">
+                                        <label for="drummer">Drummer</label>
+                                        <div class="number-input">
+                                            <button type="button" class="minus">−</button>
+                                            <span class="drummer-value">00</span>
+                                            <button type="button" class="plus">+</button>
+                                        </div>
+                                        <input type="hidden" class="drummer" name="drummer" value="00">
+                                        <hr>
+                                    </div>
+
+                                    <div class="member-block">
+                                        <label for="drummer">Guitarist</label>
+                                        <div class="number-input">
+                                            <button type="button" class="minus">−</button>
+                                            <span class="drummer-value">00</span>
+                                            <button type="button" class="plus">+</button>
+                                        </div>
+                                        <input type="hidden" class="drummer" name="drummer" value="00">
+                                        <hr>
+                                    </div>
+                                </div>
+
+                                <div class="subsection-2">
+                                    <div class="member-block">
+                                        <label for="drummer">Bassist</label>
+                                        <div class="number-input">
+                                            <button type="button" class="minus">−</button>
+                                            <span class="drummer-value">00</span>
+                                            <button type="button" class="plus">+</button>
+                                        </div>
+                                        <input type="hidden" class="drummer" name="drummer" value="00">
+                                        <hr>
+                                    </div>
+
+                                    <div class="member-block">
+                                        <label for="drummer">Vocalist</label>
+                                        <div class="number-input">
+                                            <button type="button" class="minus">−</button>
+                                            <span class="drummer-value">00</span>
+                                            <button type="button" class="plus">+</button>
+                                        </div>
+                                        <input type="hidden" class="drummer" name="drummer" value="00">
+                                        <hr>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section-3">
+                        <!-- <button class="btn-back" type="button">
+                            <img src="{% static 'bands/images/left-arrow.png' %}" alt="">
+                            <span>Back</span>
+                        </button> -->
+                        <button class="btn-next" type="button" id="teamDetails">
+                            <span>Team Member Details</span>
+                            <img src="{% static 'bands/images/right-arrow.png' %}" alt="">
+                        </button>
+                    </div>
+
+                    <div class="section-4 unactivediv">
+                        <div class="member-wrapper">
+                            <h3>Team Leader Details</h3>
+
+                            <div class="sec4Fields">
+                                <div class="sec4wrap">
+                                    <div class="sec4sub1">
+                                        <input type="text" name="leader_name" placeholder="Leader Name" required>
+                                        <input type="text" name="leader_phone" placeholder="Phone Number" required>
+                                    </div>
+
+                                    <div class="sec4sub2">
+                                        <select name="leader_gender" id="gender">
+                                            <option value="">Select Gender</option>
+                                            <option value="M">Male</option>
+                                            <option value="F">Female</option>
+                                            <option value="O">Rather Not Say</option>
+                                        </select>
+                                        <input type="email" name="leader_email" placeholder="Email">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="member-wrapper">
+                            <!-- <h3>Memeber Details</h3>
+
+                            <div class="sec4Fields">
+                                <div class="sec4wrap">
+                                    <div class="sec4sub1">
+                                        <input type="text" name="member_name[]" placeholder="Name" required>
+                                        <input type="text" name="member_phone[]" placeholder="Phone Number">
+                                        <select name="member_role[]" id="role">
+                                            <option value="Guitarist">Guitarist</option>
+                                            <option value="Vocalist">Vocalist</option>
+                                            <option value="Bassist">Bassist</option>
+                                            <option value="Drummer">Drummer</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="sec4sub2">
+                                        <select name="member_gender[]" id="gender">
+                                            <option value="">Select Gender</option>
+                                            <option value="male">Male</option>
+                                            <option value="female">Female</option>
+                                            <option value="none">Rather Not Say</option>
+                                        </select>
+                                        <input type="email" name="member_email[]" placeholder="Email">
+                                        <button class="btn-back" type="button">
+                                            <img src="{% static 'bands/images/svg/close-circle.svg' %}" alt=""
+                                                style="max-width: 1.2rem; height: auto;">
+                                            <span>Remove</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+
+                    <div class="add-member unactivediv">
+                        <button class="btn-back" type="button" id="addMember">
+                            <img src="{% static 'bands/images/svg/add-lg.svg' %}" alt=""
+                                style="max-width: 1.2rem; height: auto;">
+                            <span>Add Member</span>
+                        </button>
+                    </div>
+
+                    <div class="section-5 unactivediv">
+                        <button class="btn-back" type="button" id="back">
+                            <img src="{% static 'bands/images/left-arrow.png' %}" alt="">
+                            <span>Back</span>
+                        </button>
+                        <button class="btn-next" type="submit" id="submit">
+                            <span>Submit</span>
+                            <img src="{% static 'bands/images/right-arrow.png' %}" alt="">
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const addMember = document.querySelector("#addMember")
+            const section4 = document.querySelector(".section-4")
+
+            addMember.addEventListener("click", function () {
+                const div = document.createElement("div")
+                div.classList.add("member-wrapper")
+
+                div.innerHTML = `
+                    <h3>Memeber Details</h3>
+
+                    <div class="sec4Fields">
+                        <div class="sec4wrap">
+                            <div class="sec4sub1">
+                                <input type="text" name="member_name[]" placeholder="Name" required>
+                                <input type="text" name="member_phone[]" placeholder="Phone Number">
+                                <select name="member_role[]" id="role">
+                                    <option value="Guitarist">Guitarist</option>
+                                    <option value="Vocalist">Vocalist</option>
+                                    <option value="Bassist">Bassist</option>
+                                    <option value="Drummer">Drummer</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+
+                            <div class="sec4sub2">
+                                <select name="member_gender[]" id="gender">
+                                    <option value="">Select Gender</option>
+                                    <option value="M">Male</option>
+                                    <option value="F">Female</option>
+                                    <option value="O">Rather Not Say</option>
+                                </select>
+                                <input type="email" name="member_email[]" placeholder="Email">
+                                <button class="btn-back" type="button" id="removeBtn">
+                                    <img src="{% static 'bands/images/svg/close-circle.svg' %}" alt=""
+                                        style="max-width: 1.2rem; height: auto;">
+                                    <span>Remove</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    `
+
+                div.querySelector("#removeBtn").addEventListener("click", function () {
+                    div.remove();
+                })
+
+                section4.appendChild(div)
+            })
+        })
+    </script>
+</body>
+
+</html>

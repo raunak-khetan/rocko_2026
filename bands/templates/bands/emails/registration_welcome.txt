@@ -1,0 +1,11 @@
+Hi {{ leader_name }},
+
+Thank you — your band "{{ team_name }}" has been registered for Rock-O-Phonix, Alcheringa 2026.
+
+Leader: {{ leader_name }} ({{ leader_email }})
+City: {{ team_city }}
+
+We'll contact you with further details.
+
+Cheers,
+Rockophonix Team.
